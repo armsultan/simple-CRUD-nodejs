@@ -1,0 +1,41 @@
+INSERT SOME TODO ITEMS:
+
+Enter mongo CLI:
+mongo
+
+Use a database:
+use <db> // e.g. 'use todos'
+
+Then copy a insert block one at a time:
+
+db.todos.insert({
+    content: 'go for a jog',
+    time: "2017-05-06T12:44:51.332Z"
+})
+
+db.todos.insert({
+    content: 'read a book',
+    time: "2017-02-06T12:44:51.332Z"
+})
+
+db.todos.insert({
+    content: 'have a nap',
+    time: "2016-12-06T12:44:51.332Z"
+})
+
+db.todos.insert({
+    content: 'clean room',
+    time: "2017-05-02T12:43:51.332Z"
+})
+
+db.todos.insert({
+    content: 'wash car',
+    time: "2017-02-06T2:44:51.332Z"
+
+})
+
+db.todos.insert({
+    content: 'make dinner',
+    time: "2016-12-06T4:50:51.332Z"
+    
+})
