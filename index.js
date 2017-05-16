@@ -36,14 +36,32 @@ app.get('/api/todo', function(req, res) {
   Todo.find({})
     .exec(function(err, item) {
       if(err) {
-        res.send('error occured')
         res.status(400);
+        res.send('error occured')        
       } else {
         console.log(item);
-        res.json(item);
         res.status(200);
+        res.json(item);
       }
     });
+});
+
+
+/* GET Todo by id /api/todo/:id */
+app.get('/api/todo/:id', function(req, res) {
+  console.log('getting item ' + req.params.id);
+  Todo.findById({
+    _id: req.params.id
+  }, function(err, item) {
+    if(err) {
+      res.status(400);
+      res.send('error finding item')
+    } else {
+      console.log(item);
+      res.status(200);
+      res.send(item);
+    }
+  });
 });
 
 /* POST Todo list /api/todo */
@@ -54,8 +72,8 @@ app.post('/api/todo', function(req, res) {
       res.status(400);
     } else {
       console.log(item);
-      res.send(item);
       res.status(201);
+      res.send(item);      
     }
   });
 });
@@ -66,11 +84,12 @@ app.delete('/api/todo/:id', function(req, res) {
     _id: req.params.id
   }, function(err, item) {
     if(err) {
-      res.send('error removing item')
       res.status(400);
+      res.send('error removing item')
     } else {
-      console.log(item);
+      console.log(item);      
       res.status(200);
+      res.send(item);
     }
   });
 });
@@ -83,12 +102,12 @@ app.put('/api/todo/:id', function(req, res) {
     { $set: { content: req.body.content }
   }, {upsert: true}, function(err, item) {
     if (err) {
-      res.send('error updating todo item');
       res.status(400);
+      res.send('error updating todo item');
     } else {
       console.log(item);
-      res.send(item);
       res.status(200);
+      res.send(item);      
     }
   });
 });
